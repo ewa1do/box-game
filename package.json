@@ -1,0 +1,22 @@
+{
+  "name": "box-game",
+  "version": "1.0.0",
+  "description": "Memory game created using html, css and js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ewa1do/box-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ewa1do/box-game/issues"
+  },
+  "homepage": "https://github.com/ewa1do/box-game#readme",
+  "devDependencies": {
+    "jshint": "^2.13.1"
+  }
+}
