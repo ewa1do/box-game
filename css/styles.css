@@ -12,6 +12,7 @@ html {
 
 body {
     font-family: 'Lato', sans-serif;
+    background-image: linear-gradient(378deg, #f8ceec 0%, #a88beb 74%);
 }
 
 h1 {
