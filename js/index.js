@@ -8,6 +8,7 @@ const boxContainer = document.querySelector('.box-container');
 const startButton = document.querySelector('.start');
 const submitButton = document.querySelector('.submit');
 let countColorIndex = 0;
+let countLevel = 1;
 
 class UI {
     static displayLvlOne () {
@@ -18,6 +19,66 @@ class UI {
         `;
 
         boxContainer.insertAdjacentHTML('beforeend', output);
+    }
+
+    static displayLvlTwo () {
+        boxContainer.classList.add('level-2');
+        const output = `
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        `;
+
+        boxContainer.insertAdjacentHTML('beforeend', output);
+    }
+
+    static displayLvlThree () {
+        boxContainer.classList.add('level-3');
+        const output = `
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        `;
+
+        boxContainer.insertAdjacentHTML('beforeend', output);
+    }
+
+    static displayLvlFour () {
+        boxContainer.classList.add('level-4');
+        const output = `
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        `;
+
+        boxContainer.insertAdjacentHTML('beforeend', output);
+    }
+
+    static displayLvlFive () {
+        boxContainer.classList.add('level-5');
+        const output = `
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        `;
+
+        boxContainer.insertAdjacentHTML('beforeend', output);
+    }
+
+    static clearLevel () {
+        Array.from(boxContainer.children).forEach(box => {
+            box.remove();
+        });
     }
 
     static setBoxesColor () {
@@ -32,7 +93,7 @@ class UI {
             activeColorsList.push(hex);
         });
 
-        setTimeout(() => this.removeBoxesColor(), 3000);
+        setTimeout(() => this.removeBoxesColor(), 5000);
     }
 
     static changeBoxColorAfterClick (event) {
@@ -90,19 +151,21 @@ class Box {
         return [r, g, b];
     }
 
-    static compToHex (rgb) {
+    static RGBcompToHex (rgb) {
         const hex = Number(rgb).toString(16);
         return hex.length === 1 ? '0' + hex : hex;
     }
 
     static convertRGBToHex (r, g, b) {
-        return '#' + Box.compToHex(r) + Box.compToHex(g) + Box.compToHex(b);
+        return '#' + Box.RGBcompToHex(r) + Box.RGBcompToHex(g) + Box.RGBcompToHex(b);
     }
 }
 
+const levelList = [UI.displayLvlOne, UI.displayLvlTwo, UI.displayLvlThree];
+
 // Event Handlers
 startButton.addEventListener('click', UI.setBoxesColor.bind(UI));
-document.addEventListener('DOMContentLoaded', UI.displayLvlOne);
+document.addEventListener('DOMContentLoaded', UI.displayLvlFive);
 
 boxContainer.addEventListener('click', UI.changeBoxColorAfterClick);
 
