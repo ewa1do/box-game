@@ -43,6 +43,10 @@ h1 {
     margin-left: 33%;
 }
 
+.level-1 {
+    grid-template-columns: repeat(3, 10rem);
+}
+
 .level-2 {
     grid-template-columns: repeat(2, 10rem);
     gap: 3rem;
@@ -67,6 +71,7 @@ h1 {
 
 .level-4 {
     grid-template-columns: repeat(3, 10rem);
+    grid-template-rows: repeat(2, 10rem);
 }
 
 .level-5 {

@@ -12,6 +12,10 @@ let countLevel = 0;
 
 class UI {
     static displayLvlOne () {
+        if (boxContainer.classList.contains('level-5')) {
+            boxContainer.className = this.removeLevelClasses();
+        }
+        boxContainer.classList.add('level-1');
         const output = `
         <div class="box"></div>
         <div class="box"></div>
@@ -22,6 +26,7 @@ class UI {
     }
 
     static displayLvlTwo () {
+        boxContainer.className = this.removeLevelClasses();
         boxContainer.classList.add('level-2');
         const output = `
         <div class="box"></div>
@@ -34,6 +39,7 @@ class UI {
     }
 
     static displayLvlThree () {
+        boxContainer.className = this.removeLevelClasses();
         boxContainer.classList.add('level-3');
         const output = `
         <div class="box"></div>
@@ -47,6 +53,7 @@ class UI {
     }
 
     static displayLvlFour () {
+        boxContainer.className = this.removeLevelClasses();
         boxContainer.classList.add('level-4');
         const output = `
         <div class="box"></div>
@@ -61,6 +68,7 @@ class UI {
     }
 
     static displayLvlFive () {
+        boxContainer.className = this.removeLevelClasses();
         boxContainer.classList.add('level-5');
         const output = `
         <div class="box"></div>
@@ -111,7 +119,13 @@ class UI {
             box.style.backgroundColor = '#777';
         });
     }
+
+    static removeLevelClasses () {
+        return boxContainer.className.slice(0, boxContainer.className.indexOf('r') + 1);
+    }
 }
+
+
 
 class Box {
     static setRandomIndex () {
