@@ -53,6 +53,7 @@ h1 {
     grid-template-columns: repeat(3, 10rem);
     column-gap: 4rem;
     row-gap: 2rem;
+    margin-left: 33%;
 }
 
 .level-3 div:first-child {
@@ -62,6 +63,10 @@ h1 {
 
 .level-3 div:nth-child(2) {
     margin-left: -7rem;
+}
+
+.level-4 {
+    grid-template-columns: repeat(3, 10rem);
 }
 
 .level-5 {
