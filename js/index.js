@@ -9,11 +9,12 @@ const startButton = document.querySelector('.start');
 const submitButton = document.querySelector('.submit');
 let countColorIndex = 0;
 let countLevel = 0;
+let delay = 5000;
 
 class UI {
     static displayLvlOne () {
         if (boxContainer.classList.contains('level-5')) {
-            boxContainer.className = this.removeLevelClasses();
+            boxContainer.className = UI.removeLevelClasses();
         }
         boxContainer.classList.add('level-1');
         const output = `
@@ -99,9 +100,9 @@ class UI {
             box.style.backgroundColor = hex;
             
             activeColorsList.push(hex);
-        });
 
-        setTimeout(() => this.removeBoxesColor(), 5000);
+            this.removeColorDelay(delay);
+        });
     }
 
     static changeBoxColorAfterClick (event) {
@@ -122,6 +123,10 @@ class UI {
 
     static removeLevelClasses () {
         return boxContainer.className.slice(0, boxContainer.className.indexOf('r') + 1);
+    }
+
+    static removeColorDelay (miliseconds) {
+        setTimeout(() => this.removeBoxesColor(), miliseconds);
     }
 }
 
@@ -153,9 +158,10 @@ class Box {
         if (success) {
             countLevel++;
             Box.changeCurrentLevel();
-            if (countLevel > 4) countLevel = 0;
         } else {
-            alert('Game Over');
+            countLevel = 0;
+            boxContainer.className = UI.removeLevelClasses();
+            Box.changeCurrentLevel();
         }
     }
 
@@ -166,9 +172,13 @@ class Box {
             case 0: UI.displayLvlOne(); break;
             case 1: UI.displayLvlTwo(); break;
             case 2: UI.displayLvlThree(); break;
-            case 3: UI.displayLvlFour(); break; 
+            case 3: UI.displayLvlFour(); break;
             case 4: UI.displayLvlFive(); break;
-            default: UI.displayLvlOne(); break;
+        }
+
+        if (countLevel > 4) {
+            delay = 3000;
+            UI.displayLvlFive();
         }
     }
 
