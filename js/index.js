@@ -8,7 +8,7 @@ const boxContainer = document.querySelector('.box-container');
 const startButton = document.querySelector('.start');
 const submitButton = document.querySelector('.submit');
 let countColorIndex = 0;
-let countLevel = 1;
+let countLevel = 0;
 
 class UI {
     static displayLvlOne () {
@@ -122,7 +122,7 @@ class Box {
         return boxesColorList.find((_, i) => i === Box.setRandomIndex())
     }
 
-    static getBoxesColor() {
+    static gameFlow() {
         const submittedColors = [];
         Array.from(boxContainer.children).forEach(box => {
             submittedColors.push(box.style.backgroundColor);
@@ -130,17 +130,32 @@ class Box {
 
         const submittedHexColors = submittedColors.map(rgb => {
             const [r, g, b] = Box.sliceRGBComponents(rgb)
-            
             return Box.convertRGBToHex(r, g, b);
         });
-
-        console.log(submittedHexColors);
 
         const success = submittedHexColors
             .every((hex, i) => hex === activeColorsList[i]);
 
-        if (success) alert('Victory!!');
-        else alert('Game Over');
+        if (success) {
+            countLevel++;
+            Box.changeCurrentLevel();
+            if (countLevel > 4) countLevel = 0;
+        } else {
+            alert('Game Over');
+        }
+    }
+
+    static changeCurrentLevel () {
+        UI.clearLevel();
+
+        switch (countLevel) {
+            case 0: UI.displayLvlOne(); break;
+            case 1: UI.displayLvlTwo(); break;
+            case 2: UI.displayLvlThree(); break;
+            case 3: UI.displayLvlFour(); break; 
+            case 4: UI.displayLvlFive(); break;
+            default: UI.displayLvlOne(); break;
+        }
     }
 
     static sliceRGBComponents (rgb) {
@@ -161,12 +176,9 @@ class Box {
     }
 }
 
-const levelList = [UI.displayLvlOne, UI.displayLvlTwo, UI.displayLvlThree];
-
 // Event Handlers
 startButton.addEventListener('click', UI.setBoxesColor.bind(UI));
-document.addEventListener('DOMContentLoaded', UI.displayLvlFive);
+document.addEventListener('DOMContentLoaded', UI.displayLvlOne);
 
 boxContainer.addEventListener('click', UI.changeBoxColorAfterClick);
-
-submitButton.addEventListener('click', Box.getBoxesColor);
+submitButton.addEventListener('click', Box.gameFlow);
