@@ -7,9 +7,12 @@ const activeColorsList = []; // To store the colors shown at the begining
 const boxContainer = document.querySelector('.box-container');
 const startButton = document.querySelector('.start');
 const submitButton = document.querySelector('.submit');
+const scoreLabel = document.querySelector('.score');
+
 let countColorIndex = 0;
 let countLevel = 0;
 let delay = 5000;
+let gameScore = 0;
 
 class UI {
     static displayLvlOne () {
@@ -90,6 +93,17 @@ class UI {
         });
     }
 
+    static displayScoresUI () {
+        const scoreDiv = `
+        <div class="scores">
+            <p>Score: <span class="score">0</span></p>
+            <p>HighScore: <span class="high-score"></span></p>
+        </div>
+        `
+
+        document.querySelector('main').insertAdjacentHTML('afterend', scoreDiv);
+    }
+
     static setBoxesColor () {
         activeColorsList.length = 0;
         Array.from(boxContainer.children).forEach((box) => {
@@ -158,11 +172,18 @@ class Box {
         if (success) {
             countLevel++;
             Box.changeCurrentLevel();
+            UI.setBoxesColor();
+            gameScore += 100;
         } else {
             countLevel = 0;
             boxContainer.className = UI.removeLevelClasses();
             Box.changeCurrentLevel();
+            Box.setHighScore();
+            gameScore = 0;
         }
+        
+        document.querySelector('.score').textContent = gameScore;
+
     }
 
     static changeCurrentLevel () {
@@ -180,6 +201,21 @@ class Box {
             delay = 3000;
             UI.displayLvlFive();
         }
+    }
+
+    static setHighScore () {
+        if (localStorage.length > 0) {
+            const highScore = +localStorage.getItem('high');
+            if (gameScore > highScore) {
+                localStorage.clear();
+                localStorage.setItem('high', gameScore);
+            }
+        } else {
+            localStorage.setItem('high', gameScore);
+        }
+
+        document.querySelector('.high-score').textContent = localStorage.getItem('high');
+
     }
 
     static sliceRGBComponents (rgb) {
@@ -203,6 +239,7 @@ class Box {
 // Event Handlers
 startButton.addEventListener('click', UI.setBoxesColor.bind(UI));
 document.addEventListener('DOMContentLoaded', UI.displayLvlOne);
+document.addEventListener('DOMContentLoaded', UI.displayScoresUI);
 
 boxContainer.addEventListener('click', UI.changeBoxColorAfterClick);
 submitButton.addEventListener('click', Box.gameFlow);
