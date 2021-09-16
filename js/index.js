@@ -8,6 +8,7 @@ const boxContainer = document.querySelector('.box-container');
 const startButton = document.querySelector('.start');
 const submitButton = document.querySelector('.submit');
 const scoreLabel = document.querySelector('.score');
+const scoreDiv = document.querySelector('.score-div');
 
 let countColorIndex = 0;
 let countLevel = 0;
@@ -94,15 +95,22 @@ class UI {
     }
 
     static displayScoresUI () {
-        const scoreDiv = `
-        <div class="scores">
+        const output = `
             <p>Score: <span class="score">0</span></p>
             <p>HighScore: <span class="high-score"></span></p>
-        </div>
         `
 
-        document.querySelector('main').insertAdjacentHTML('afterend', scoreDiv);
+        scoreDiv.insertAdjacentHTML('afterbegin', output);
     }
+
+    static removeScoresUI() {
+        Array.from(scoreDiv.children).forEach(score => score.remove());
+    }
+
+    static updateScoresUI () {
+        this.removeScoresUI();
+        this.displayScoresUI();
+    } 
 
     static setBoxesColor () {
         activeColorsList.length = 0;
@@ -142,6 +150,11 @@ class UI {
     static removeColorDelay (miliseconds) {
         setTimeout(() => this.removeBoxesColor(), miliseconds);
     }
+
+    static showHighScore () {
+        return document.querySelector('.high-score').textContent = localStorage.getItem('high');
+
+    }
 }
 
 
@@ -175,6 +188,7 @@ class Box {
             UI.setBoxesColor();
             gameScore += 100;
         } else {
+            UI.updateScoresUI();
             countLevel = 0;
             boxContainer.className = UI.removeLevelClasses();
             Box.changeCurrentLevel();
@@ -213,8 +227,8 @@ class Box {
         } else {
             localStorage.setItem('high', gameScore);
         }
-
-        document.querySelector('.high-score').textContent = localStorage.getItem('high');
+        UI.showHighScore();
+        // document.querySelector('.high-score').textContent = localStorage.getItem('high');
 
     }
 
@@ -240,6 +254,7 @@ class Box {
 startButton.addEventListener('click', UI.setBoxesColor.bind(UI));
 document.addEventListener('DOMContentLoaded', UI.displayLvlOne);
 document.addEventListener('DOMContentLoaded', UI.displayScoresUI);
+document.addEventListener('DOMContentLoaded', UI.showHighScore);
 
 boxContainer.addEventListener('click', UI.changeBoxColorAfterClick);
 submitButton.addEventListener('click', Box.gameFlow);
