@@ -10,24 +10,49 @@ html {
     font-size: 62.5%;
 }
 
+@font-face {
+    font-family: 'Arcade';
+    src: url(../fonts/ARCADECLASSIC.TTF);
+    font-weight: 300;
+}
+
+
 body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Arcade', sans-serif;
     background-image: linear-gradient(378deg, #f8ceec 0%, #a88beb 74%);
+    color: #222;
+}
+
+.score-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 3rem;
+    margin-top: 2rem;
+}
+
+.score-div p {
+    font-size: 1.5rem;
+}
+
+main {
+    height: 100vh;
 }
 
 h1 {
     margin: 2rem 0 0 42%;
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 400;
 }
 
 .start, .submit {
     margin: 2rem 0 2rem 45%;
-    padding: .8rem;
+    padding: 1rem;
     cursor: pointer;
     border: 1px solid #333;
-    border-radius: 5px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-family: 'Arcade';
+    box-shadow: 2px 2px 0 #333;
     transition: all .3s ease;
 }
 
@@ -75,8 +100,8 @@ h1 {
 }
 
 .level-5 {
-    grid-template-rows: repeat(5, 4.5rem);
-    margin-bottom: 6rem;
+    grid-template-rows: repeat(5, 3rem);
+    margin-bottom: 9rem;
 }
 
 .level-5 div:first-child {
@@ -116,4 +141,5 @@ h1 {
     width: 10%;
     margin: 1rem .5rem;
     background-color: #777;
+    box-shadow: 2px 2px 0 #333;
 }
