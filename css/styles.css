@@ -16,11 +16,10 @@ html {
     font-weight: 300;
 }
 
-
 body {
     font-family: 'Arcade', sans-serif;
     background-image: linear-gradient(378deg, #f8ceec 0%, #a88beb 74%);
-    color: #222;
+    color: #222 ;
 }
 
 .score-div {
@@ -28,7 +27,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 3rem;
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
 .score-div p {
@@ -37,23 +36,27 @@ body {
 
 main {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+
 h1 {
-    margin: 2rem 0 0 42%;
     font-size: 4rem;
     font-weight: 400;
+    align-self: center;
 }
 
 .start, .submit {
-    margin: 2rem 0 2rem 45%;
+    margin: 4rem 0 2rem 45%;
     padding: 1rem;
     cursor: pointer;
     border: 1px solid #333;
     font-size: 1.6rem;
     font-family: 'Arcade';
     box-shadow: 2px 2px 0 #333;
-    transition: all .3s ease;
+    transition: all .3s ease;   
+    width: 10%;
 }
 
 .start:hover, .submit:hover {
@@ -65,7 +68,8 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 10rem);
     gap: 4rem;
-    margin-left: 33%;
+    justify-content: center;
+    align-content: center;
 }
 
 .level-1 {
@@ -75,14 +79,12 @@ h1 {
 .level-2 {
     grid-template-columns: repeat(2, 10rem);
     gap: 3rem;
-    margin-left: 38%;
 }
 
 .level-3 {
     grid-template-columns: repeat(3, 10rem);
     column-gap: 4rem;
     row-gap: 2rem;
-    margin-left: 33%;
 }
 
 .level-3 div:first-child {

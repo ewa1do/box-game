@@ -228,8 +228,6 @@ class Box {
             localStorage.setItem('high', gameScore);
         }
         UI.showHighScore();
-        // document.querySelector('.high-score').textContent = localStorage.getItem('high');
-
     }
 
     static sliceRGBComponents (rgb) {

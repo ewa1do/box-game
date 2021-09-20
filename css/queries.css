@@ -1,0 +1,30 @@
+@media only screen and (max-width: 600px) {
+    .start, .submit { font-size: 1.2rem; }
+}
+
+@media only screen and (max-width: 500px) {
+    .start, .submit { margin: 4rem 0 2rem 44%; width: 12%; }
+}
+
+@media only screen and (max-width: 480px) {
+    .start, .submit { margin: 4rem 0 2rem 43.5%; width: 13%; }
+}
+
+@media only screen and (max-width: 420px) {
+    .box { padding: 4.2rem; }
+    .start, .submit { margin: 4rem 0 2rem 43%; width: 14%; }
+}
+
+@media only screen and (max-width: 320px) {
+    .start, .submit { margin: 4rem 0 2rem 40%; width: 20%; }
+    .box-container { gap: 3rem; } 
+    .level-1, .level-3, .level-4 { margin-left: -2rem; }
+    .level-1 { grid-template-columns: repeat(3, 7rem); }
+    .level-2 { grid-template-columns: repeat(2, 8rem); grid-template-rows: repeat(2, 8rem); }
+    .level-3 { grid-template-columns: repeat(3, 7rem); }
+    .level-3 div:first-child { margin-left: 4rem; }
+    .level-3 div:nth-child(2) { margin-left: -4rem; }
+    .level-4 { grid-template-columns: repeat(3, 7rem); }
+    .level-5 { grid-template-columns: repeat(3, 6.5rem); width: 62%; }
+    .level-5 div:nth-child(2), .level-5 div:nth-child(5) { margin-left: 4rem; }
+}
